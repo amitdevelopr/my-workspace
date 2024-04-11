@@ -1,0 +1,42 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const App=()=>{
+  const n1Ref=React.useRef();
+  const n2Ref=React.useRef();
+  const resRef=React.useRef();
+  const fnAdd=()=>{
+    const n1=n1Ref.current.value;
+    const n2=n2Ref.current.value;
+    const res=parseInt(n1)+parseInt(n2);
+    resRef.current.innerText=res;
+    resRef.current.style.color="blue";
+    if (res>100) resRef.current.style.color="red";
+  }
+return <div>
+    <p>
+      <b>Enter 1st no</b><input ref={n1Ref} />
+      </p>
+    <p>
+      <b>Enter 2nd no</b><input ref={n2Ref}/>
+      </p>
+    <p>
+      <button onClick={fnAdd}>Add</button>
+      </p>
+    <p>
+     <h1>Result: <span ref={resRef}></span></h1>   
+      </p>
+  </div>
+}
+
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+
+
+
+
+</script>

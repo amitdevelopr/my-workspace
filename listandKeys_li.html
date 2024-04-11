@@ -1,0 +1,20 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const App=()=>{
+  const players=["Sachin","Dhoni","Kohli","Dravid","Uv"]
+  return <ol>
+    {
+      players.map((val,ind,oa)=>{
+           return <li key={`li_${ind}`}>{val}</li>
+      })
+    }
+    </ol>
+}
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+</script>  

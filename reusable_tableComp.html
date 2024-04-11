@@ -1,0 +1,91 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+  const Table=(props)=>{
+    const {title,data,headers,columns}=props;
+    return <div>
+      <h1>{title}</h1>
+      <table border="2px">
+    <thead>
+      <tr>
+        {
+          headers.map((val,ind)=>{
+            return <th key={`th_${ind}`}>{val}</th>
+          })
+        }
+        </tr>
+      </thead>
+      <tbody>
+        {
+          data.map((obj,ind)=>{
+            return <tr key={`${ind}`}>
+                {
+                columns.map((val,ind)=>{
+                  return <td>{obj[val]}</td>
+                })
+              }
+              </tr>
+          })
+        } 
+        </tbody>
+    </table>
+      </div>
+  }
+  const App=()=>{
+    const players = [
+			{
+				"name": "Sachin",
+				"runs": 20000,
+				"loc": "Mumbai"
+			},
+			{
+				"name": "Dhoni",
+				"runs": 10000,
+				"loc": "Ranchi"
+			},
+			{
+				"name": "Kohli",
+				"runs": 15000,
+				"loc": "Delhi"
+			},
+			{
+				"name": "uv",
+				"runs": 15000,
+				"loc": "Punjab"
+			}
+		]
+		const students = [
+			{
+				name: 's1',
+				marks: 88
+			},
+			{
+				name: 's2',
+				marks: 98
+			},
+			{
+				name: 's3',
+				marks: 78
+			},
+			{
+				name: 's4',
+				marks: 95
+			},
+			{
+				name: 's5',
+				marks: 90
+			}
+		]
+    
+return <div>
+       <Table title={"players"} data={players} headers={["Name","Runs","Loc"]} columns={["name","runs","loc"]}/>
+       <Table title={"students"} data={students} headers={["Name","Marks"]} columns={["name","marks"]}/>
+   </div>
+  }
+  const root=ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App />);
+</script>

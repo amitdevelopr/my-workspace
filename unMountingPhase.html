@@ -1,0 +1,31 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const Even=()=>{
+  React.useEffect(()=>{
+    return ()=>{
+      console.log("i am going to unMount");
+    }
+  },[])
+  return <h1>Even number component</h1>
+}  
+const App=()=>{
+const [no,setNo]=React.useState(0);
+  const fnInc=()=>{
+    setNo(no+1);
+  }
+ 
+return <div>
+    <h1>{no}</h1>
+    <button onClick={fnInc}>increment</button>
+    {no%2 === 0 && <Even/>}
+</div>
+  }
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+
+</script>

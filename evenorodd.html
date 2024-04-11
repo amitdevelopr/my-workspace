@@ -1,0 +1,26 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const App=()=>{
+  let no=0;
+  const fnCheck=()=>{
+    let res;
+   let no= document.querySelector("#root > div > p:nth-child(1) > input").value
+   if(no%2==0) res="even";
+   else res="odd";
+   document.querySelector("span").innerText=res;
+  }
+  return <div>
+    <p>enter no : <input/></p>
+    <button onClick={fnCheck}>check</button>
+    <p>result: <span></span></p>
+</div>
+  }
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+
+</script>

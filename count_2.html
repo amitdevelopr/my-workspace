@@ -1,0 +1,32 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const App=()=>{
+ // let no=0;
+  const h1Ref=React.useRef();
+  h1Ref.no=1;
+  /*
+  h1ref={
+    current:undefined
+  }
+  */
+ // console.log(1,h1Ref);
+  const fnInc=()=>{
+   // console.log(2,h1Ref);
+   //debugger;
+    h1Ref.no=h1Ref.no+1;
+    h1Ref.current.innerText=h1Ref.no;
+  }
+  return <div>
+    <h1 ref={h1Ref}>  {h1Ref.no}</h1>
+    <button onClick={fnInc}>increment</button>
+</div>
+  }
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+
+</script>

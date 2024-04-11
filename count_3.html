@@ -1,0 +1,23 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const App=()=>{
+ // let no=0;
+ const [no,setNo]=React.useState(0);
+  const fnInc=()=>{
+    setNo(no+1);
+   // document.querySelector("h1").innerText=no;
+  }
+  return <div>
+    <h1>{no}</h1>
+    <button onClick={fnInc}>increment</button>
+</div>
+  }
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+
+</script>

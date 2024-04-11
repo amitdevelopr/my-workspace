@@ -1,0 +1,39 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+  
+<script type="text/babel">
+const App=()=>{
+   //debugger;
+  const[cnt,setCnt]=React.useState(0);
+  const[name,setName]=React.useState("Sachin");
+  const[clr,setClr]=React.useState("red")
+  React.useEffect(()=>{
+    //debugger;
+    console.log("100 lines of code");  // this stament called for every state variable update and first time when content loading is completed.
+  },[cnt,clr])
+  const fnInc=()=>{
+    setCnt(cnt+1);
+  }
+//  console.log("100 lines")
+const fnToggleName=()=>{
+  setName(name == "Sachin" ? "Dhoni" : "Sachin"  )
+}
+const fnToggleColor=()=>{
+  setClr(clr === "red" ? "blue" : "red")
+}
+  return <div>
+    <h1>{cnt}</h1>
+    <button onClick={fnInc}>increment</button>
+    <h1>{name}</h1>
+    <button onClick={fnToggleName}>Toggle Name</button>
+    <h1><span style={{color:clr}}>Amit</span></h1>
+    <button onClick={fnToggleColor}>Toggle color</button>
+    </div>
+}
+
+const root=ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App />);
+  </script>

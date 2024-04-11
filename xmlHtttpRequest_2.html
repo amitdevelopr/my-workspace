@@ -1,0 +1,56 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const ReusableList=({data,columnName})=>{
+  return <ol>{
+    data.map((obj,ind)=>{
+      return <li key={`li_${ind}`}>{obj[columnName]}</li>
+   })  
+  }
+    </ol>
+}  
+const App=()=>{
+  const [posts,setPosts]=React.useState([]);
+  // const mockData=[
+  //   {
+  //     name: "Axis",
+  //     age: 22
+  //   },
+  //   {
+  //     name: "Babu",
+  //     age: 32
+  //   }
+  // ]
+  const fnClick=()=>{
+    //object creation
+    const httpObj=new XMLHttpRequest();
+    //preparing request
+    httpObj.open("get","https://jsonplaceholder.typicode.com/posts");
+   //sending request 
+   httpObj.send();
+    //request go the server App which process it and give back response
+    //handle success response
+    httpObj.onload=()=>{
+          let res=httpObj.responseText;
+         res= JSON.parse(res);
+          setPosts(res)
+    }
+   httpObj.onerror=()=>{
+        setPosts([]);
+        console.error(httpObj.responseText)
+   }
+   
+    //setPosts(mockData);
+  }
+return <div> 
+<button onClick={fnClick}>get Posts</button>
+<ReusableList data={posts} columnName={"title"}/>
+</div>
+}
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>)
+</script>

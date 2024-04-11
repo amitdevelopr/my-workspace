@@ -1,0 +1,33 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+  const Child=(props)=>{
+    return <div>
+      <h1>Child.........{props.res}</h1>
+      </div>
+  }
+
+  const App=()=>{
+    const [cnt,setCnt]=React.useState(0);
+    const fnInc=()=>{
+      setCnt(cnt+1);
+    }
+    const fnDec=()=>{
+      if(cnt!=0)
+      setCnt(cnt-1);
+    }
+    return <div>
+      <h1>Parent</h1>
+      <button onClick={fnInc}>increment</button><br />
+      <button onClick={fnDec}>decrement</button>
+      <Child res={cnt}/>
+      </div>
+  }
+
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>

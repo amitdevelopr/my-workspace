@@ -1,0 +1,22 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+<script type="text/babel">
+  const App=()=>{
+    const [cnt,setCnt]=React.useState(0);
+    const fnClick=()=>{
+      setCnt(cnt+1);
+      console.log(cnt); 
+      //here value is always less than cnt value bcoz of lag in setCnt method bcoz of its async behaviour.
+    }
+    return <div>
+      <h1>{cnt}</h1>
+      <button onClick={fnClick}>update count value</button>
+      </div>
+  }
+  const root=ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App/>);
+  
+  </script>

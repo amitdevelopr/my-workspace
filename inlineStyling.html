@@ -1,0 +1,56 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<style>
+.box{
+   height: 400px;
+   width: 600px; 
+   border: 2px solid red;
+   position: relative;
+}
+.wall{
+    border: 2px solid green;
+    display: inline-block;
+    height: 300px;
+    position: absolute;
+    top: 49px;
+    left: 550px;
+}
+.arrow{
+    border: 2px solid blue;
+    width: 100px;
+    position: absolute;
+    display: inline-block;
+    top: 185px;
+}
+</style>
+<div id="root"></div>
+<script type="text/babel">
+  const App=()=>{
+    const [val,setVal]=React.useState(0);
+    const fnClick=()=>{
+      const intervalId=setInterval(()=>{
+        setVal((val)=>{
+          if(val==449){
+            clearInterval(intervalId);
+            setTimeout(()=>{
+             setVal(0)
+            },2000)
+          }
+          return val+1;
+        });
+      },10)   
+    }
+    return <div>
+      <div className="box">
+        <div className="wall"></div>
+        <div className="arrow" style={{left:val}}></div>
+        </div>
+        <button onClick={fnClick}>shoot</button>
+      </div>
+  }
+  const root=ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App/>);
+  
+  </script>

@@ -1,0 +1,57 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const App=()=>{
+        const n1Ref=React.useRef();
+        const n2Ref=React.useRef();
+        const resRef=React.useRef();
+        
+
+      const fnAdd=()=>{
+          const n1=parseInt(n1Ref.current.value);
+          const n2=parseInt(n2Ref.current.value);
+          resRef.current.innerText=n1+n2;
+        }
+        const fnSub=()=>{
+          const n1=n1Ref.current.value;
+          const n2=n2Ref.current.value;
+          resRef.current.innerText=n1-n2;
+        }
+
+        const fnMul=()=>{
+          const n1=n1Ref.current.value;
+          const n2=n2Ref.current.value;
+          resRef.current.innerText=n1*n2;
+        }
+        const fnDiv=()=>{
+          const n1=n1Ref.current.value;
+          const n2=n2Ref.current.value;
+          resRef.current.innerText=n1/n2;
+        }        
+  return <div>
+    <p>
+      <b>Enter 1st no</b><input ref={n1Ref}/>
+      </p>
+      <p>
+      <b>Enter 2nd no</b><input ref={n2Ref}/>
+      </p>
+      <p>
+          <button onClick={fnAdd}>Add</button>
+          <button onClick={fnSub}>Sub</button>
+          <button onClick={fnMul}>Mul</button>
+          <button onClick={fnDiv}>Div</button>
+        </p>
+        <h1>Result: <span ref={resRef}></span></h1>
+    
+    </div>
+
+}
+
+const root =ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+
+</script>

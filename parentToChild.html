@@ -1,0 +1,32 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+  const Child=(props)=>{
+    return <div>
+      <h1>Child.......{props.name}</h1>
+      
+      </div>
+  }
+const App=()=>{
+  const inpRef=React.useRef();
+  const [data,setData]=React.useState("");
+  const fnClick=()=>{
+   setData(inpRef.current.value);
+     inpRef.current.value="";
+  }
+  return <div>
+    <h1>App</h1>
+    <p>
+      <b>Enter something</b><input ref={inpRef}/>
+      </p>
+      <button onClick={fnClick}>Send to Child component</button>
+    <Child name={data} />
+    </div>
+}
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>

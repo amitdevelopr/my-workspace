@@ -1,0 +1,94 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+<script type="text/babel">
+  const Question=(props)=>{
+    const {que,options,type,index,id,fnChange}=props;
+    
+    const opts=["A", "B", "C", "D"];
+    
+    return <div>
+      <h3>{index+1} . {que}</h3>
+      {
+        options.map((val,ind)=>{
+          return <p key={`p_${ind}`}><input onChange={fnChange} name={id} value={opts[ind]} type={type=== "s" ? "radio" : "checkbox"}/>{val}</p>
+        })
+      }
+      </div>
+  }
+  const App=()=>{
+    const keyAns={1:"B", 2:"BC", 3:"C", 4:"AD", 5:"B" };
+    const questions=[
+      {
+        id: 1,
+        que: "Is React is a framework or library?",
+        options: ["Framework","Library"],
+        type: "s"
+      },
+      {
+        id: 2,
+        que: "Below which are react hooks?",
+        options: ["state","useState","useContext","props"],
+        type: "m"
+      },
+      {
+        id: 3,
+        que: "How to pass data from Child to parent?",
+        options: ["props","refs","callbacks","none of the above"],
+        type:"s"
+      },
+      {
+        id: 4,
+        que: "How to pass data from Parent to Child?",
+        options: ["redux","class","object","context"],
+        type: "m"
+      },
+      {
+        id: 5,
+        que: "Can we use react hooks outside a functional component?",
+        options: ["yes","no"],
+        type: "s"
+      }
+    ]
+    const [stdAns,setStdAns]=React.useState({});
+    const fnChange=(eve)=>{
+      const {name,value,type,checked}=eve.target;
+      if(type === 'checkbox'){
+        const checkedValues= stdAns[name] ? stdAns[name].split("") : [];
+        if(checked){
+          checkedValues.push(value);
+        }else{
+          const index=checkedValues.indexOf(value);
+          checkedValues.splice(index,1);
+        }
+        setStdAns({...stdAns,[name]:checkedValues.sort().join("")});
+      }else{
+        setStdAns({...stdAns,[name]:value});
+      }
+    }
+    const fnSubmit=()=>{
+      let marks=0;
+     for(let key in stdAns){
+      if(keyAns[key] === stdAns[key]){
+        marks=marks + 1;
+      }
+     }
+       alert(`you got ${marks} marks.`)
+    }
+    
+    return <div>
+      {
+      questions.map((obj,ind)=>{
+        return <Question key={`q_${ind}`} index={ind} fnChange={fnChange} {...obj} />
+      })
+      }
+      <button onClick={fnSubmit}>submit</button>
+      </div>
+  }
+  
+  const root=ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App/>);
+  
+  </script>

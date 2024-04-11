@@ -1,0 +1,35 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const App=()=>{
+const [data,setData]=React.useState({});
+const [result,setResult]=React.useState(0);
+  const handleClick=()=>{
+     const{no1,no2}=data;
+     const sum=parseInt(no1)+parseInt(no2);
+     setResult(sum);
+  }
+  const handleChange=(eve)=>{
+      const {id,value}=eve?.target;
+      setData({...data,[id]:value});
+  }
+return <div>
+  <p>
+  <b>enter 1st no</b><input id="no1" onChange={handleChange} type="number"/>  
+  </p>
+  <p>
+  <b>enter 2nd no</b><input id="no2" onChange={handleChange} type="number"/>  
+  </p>
+  <p>
+  <button onClick={handleClick}>sum</button>  
+  </p>
+  <h1>sum : {result}</h1>
+  </div>
+}
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>

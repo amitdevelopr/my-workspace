@@ -1,0 +1,83 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+<link rel="stylesheet" href="bootstrap.css">
+<style>
+.header{
+  font-size: 50px;
+  font-weight: bold;
+}
+.menu{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: right;
+    background: #cdcdd4;
+    line-height: 40px;
+}
+.menu>li{
+    display: inline;
+    margin-right: 15px;
+    letter-spacing: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.menu-activ{
+    color: red;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px white;
+}
+</style>
+<div id="root"></div>
+
+<script type="text/babel">
+const Home=()=>{
+  return <h1 className="mt-5 text-center">This is home component</h1>
+} 
+const About=()=>{
+  return <h1 className="mt-5 text-center">This is About component</h1>
+} 
+const Contact=()=>{
+  return <h1 className="mt-5 text-center">This is Contact component</h1>
+}                  
+const Menu=(props)=>{
+  const [menuItem,setMenuItem]=React.useState("home");
+  const {fn}=props;
+  const fnMenuClick=(eve)=>{
+    const {id}=eve?.target;
+    setMenuItem(id);
+      fn(id);
+  }
+  return <ul className="menu">
+       <li className={menuItem=== 'home' ? "menu-activ" : ""} onClick={fnMenuClick} id="home">Home</li>
+       <li className={menuItem=== 'about' ? "menu-activ" : ""}  onClick={fnMenuClick} id="about">About</li>
+       <li className={menuItem=== 'contact' ? "menu-activ" : ""} onClick={fnMenuClick} id="contact">Contact</li>
+    </ul>
+} 
+const Header=()=>{
+  return <div className="bg-primary text-center text-white header">
+    My React Page
+    </div>
+}  
+const Footer=()=>{
+  return <div className="bg-primary text-center text-white position-fixed bottom-0 w-100">&copy; belongs to me</div>
+}
+const App=()=>{
+  const [itemName,setItemName]=React.useState("home")
+  const cb=(data)=>{
+      setItemName(data);
+  }
+  return <div>
+    <Header />
+    <Menu fn={cb}/>
+    {/* conditional rendering*/}
+    {itemName === "home" && <Home/>}
+    {itemName === "about" && <About/>}
+    {itemName === "contact" && <Contact/>}
+    <Footer />
+    </div>
+}
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+
+</script>

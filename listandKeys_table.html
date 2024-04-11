@@ -1,0 +1,92 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const App=()=>{
+  const [data,setData]=React.useState()
+  const players=[
+{
+name:"sachin",
+runs:20000,
+loc:"Mumbai",
+},
+
+{
+name:"Dhoni",
+runs:10000,
+loc:"Ranchi",
+},
+
+{
+name:"Kohli",
+runs:15000,
+loc:"Delhi",
+},
+
+{
+name:"Uv",
+runs:8000,
+loc:"Chandigarh",
+},
+
+{
+name:"Dravid",
+runs:12000,
+loc:"Benglore",
+},
+
+{
+name:"Rohit",
+runs:9000,
+loc:"Mumbai",
+},
+
+{
+name:"Sehwag",
+runs:8500,
+loc:"Delhi",
+},
+
+{
+name:"ponting",
+runs:13000,
+loc:"Australia",
+},
+]
+const fnView=(value)=>{
+   setData(value);
+}
+
+  return <div>
+   <table border="1px">
+    <thead>
+      <tr>
+        <th>players name</th>
+        <th>players runs</th>
+        <th>players loc</th>
+        <th>view</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          players.map((val,ind,oa)=>{
+            const {name,runs,loc}=val
+            return <tr key={`tr_${ind}`}>
+                <td>{name}</td>
+                <td>{runs}</td>
+                <td>{loc}</td>
+                <td><button onClick={()=>{fnView(val)}}>view</button></td>
+              </tr>
+          })
+        }
+        </tbody>
+    </table>
+    {data && <h1>Hi, i am {data?.name} my runs are {data?.runs} i m from {data?.loc}</h1>}
+  </div>
+}
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+</script>  

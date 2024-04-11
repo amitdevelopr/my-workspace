@@ -1,0 +1,69 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const App=()=>{
+  const players=[
+{
+name:"sachin",
+runs:20000,
+loc:"Mumbai",
+},
+
+{
+name:"Dhoni",
+runs:10000,
+loc:"Ranchi",
+},
+
+{
+name:"Kohli",
+runs:15000,
+loc:"Delhi",
+},
+
+{
+name:"Uv",
+runs:8000,
+loc:"Chandigarh",
+},
+
+{
+name:"Dravid",
+runs:12000,
+loc:"Benglore",
+},
+
+{
+name:"Rohit",
+runs:9000,
+loc:"Mumbai",
+},
+
+{
+name:"Sehwag",
+runs:8500,
+loc:"Delhi",
+},
+
+{
+name:"ponting",
+runs:13000,
+loc:"Australia",
+},
+]
+  return <select>
+    {
+      players.map(({name,runs},ind,oa)=>{
+        //const {name,runs}=val;
+        return <option key={`opt_${ind}`} value={runs}>{name}</option>
+      })
+    }
+    </select>
+}
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+</script>  

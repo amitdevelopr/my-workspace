@@ -1,0 +1,26 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const App=()=>{
+  let no=0;
+  const fnAdd=()=>{
+    let res;
+   let no1=parseInt(document.querySelector("#root > div > p:nth-child(1) > input").value);
+   let no2= parseInt(document.querySelector("#root > div > p:nth-child(2) > input").value);
+   document.querySelector("span").innerText=no1+no2;
+  }
+  return <div>
+    <p>enter no 1: <input/></p>
+    <p>enter no 2: <input/></p>
+    <button onClick={fnAdd}>Add</button>
+    <p>result: <span></span></p>
+</div>
+  }
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+
+</script>

@@ -1,0 +1,76 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+<script type="text/babel">
+  const ctx1=React.createContext();
+  const ctx2=React.createContext();
+  
+ const E=()=>{
+      const ctxData=React.useContext(ctx2);
+      const {name,runs,loc}=ctxData;
+ return <div>
+       <h1>E...........{`${name}____${runs}____${loc}`}</h1>
+        </div>
+       }
+
+ const D=()=>{
+ return <div>
+       <h1>D</h1>
+       </div>
+       }
+
+ const C=()=>{
+   const player2={
+      name:"Dhoni",
+      runs:12000,
+      loc:"Ranchi",
+  }
+return <div>
+      <h1>C</h1>
+      <ctx2.Provider value={player2}>
+       <D />
+       <E />
+      </ctx2.Provider>
+        </div>
+       }
+
+ const B=()=>{
+      const ctxData=React.useContext(ctx1);
+      const {name,runs,loc}=ctxData;
+ return <div>
+       <h1>B.........{`${name}____${runs}____${loc}`}</h1>
+       <C />
+        </div>
+       }
+
+ const A=()=>{
+ return <div>
+       <h1>A</h1>
+       <B />
+        </div>
+       }
+
+ const App=()=>{
+  const player1={
+      name:"Sachin",
+      runs:20000,
+      loc:"Mumbai"
+  }
+  
+ return <div>
+       <h1>App</h1>
+       <ctx1.Provider value={player1}>
+            
+              <A />
+              
+       </ctx1.Provider>
+        </div>
+       }
+    
+  
+  const root=ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App/>);
+  
+  </script>

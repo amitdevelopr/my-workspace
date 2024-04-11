@@ -1,0 +1,30 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+<script type="text/babel">
+const Child=(props)=>{
+  const fnClick=()=>{
+   // props.res="dhoni";  Cannot assign to read only property 'res' of object
+      props.cb("Dhoni")
+  }
+  return <div>
+    <h1>Child............{props.res}</h1>
+    <button onClick={fnClick}>change prop value</button>
+    </div>
+}  
+const App=()=>{
+  const [name,setName]=React.useState("Sachin");
+  const fnC=(data)=>{
+      setName(data);
+  }
+  return <div>
+    <h1>Parent</h1>
+    <Child res={name} cb={fnC}/>
+    </div>
+}  
+  const root=ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App/>);
+  
+  </script>

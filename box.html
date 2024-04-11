@@ -1,0 +1,32 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+<style>
+  .box{
+    height:100px;
+    width:100px;
+    border:1px solid blue;
+    text-align: center;
+    display: inline-block;
+    line-height: 100px;
+
+  }
+</style>
+<script type="text/babel">
+const Box=(props)=>{
+  return <div className="box">{props.no}</div>
+}
+
+  const App=()=>{
+    return <div><div><Box no="1"/><Box no="2"/></div>
+                <div><Box no="3"/><Box no="4"/></div>
+                                  
+  </div>
+  }
+  
+  const root=ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App/>);
+  
+  </script>

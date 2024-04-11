@@ -1,0 +1,31 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const OrderList=(props)=>{
+  const {data,headers}=props;
+  return<div>
+    <h1>{headers}</h1>
+   <ol>
+    {
+      data.map((val,ind,oa)=>{
+        return <li>{val}</li>
+      })
+    }
+    </ol>
+    </div>
+}
+const App=()=>{
+  const players=["Sachin","Dhoni","Kohli","Dravid","Yuvraj","Rohit","Dhawan","Pant"];
+  const students=["Samar","Ansh","Happy","Ronit","Harsh"];
+  return <div>
+    <OrderList data={players} headers={"players"}/>
+    <OrderList data={students} headers={"students"}/>
+      </div>
+}
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+</script>  

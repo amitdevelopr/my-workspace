@@ -1,0 +1,29 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+<script type="text/babel">
+const App=()=>{
+  const [cnt,setCnt]=React.useState(0);
+  const fnClick=()=>{
+    for(let i=0;i<5;i++){
+      //console.log("loop");
+      //setCnt(cnt+1);
+      setCnt(
+        (val)=>{
+        return val+1;
+        }
+      )
+    }
+
+  }
+  return <div>
+    <h1>{cnt}</h1>
+    <button onClick={fnClick}>increment</button>
+    </div>
+}
+  const root=ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<App/>);
+  
+  </script>

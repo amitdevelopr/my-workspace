@@ -1,0 +1,32 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const App=()=>{
+  let no=0;
+  const fnCheck=()=>{
+    let res,flag=true;
+   let no= document.querySelector("#root > div > p:nth-child(1) > input").value;
+   for(let i=2;i<no;i++){
+    if(no%i==0){
+    flag=false
+     break;
+    }
+  }
+   if(flag) res="prime";
+   else res="not prime";
+   document.querySelector("span").innerText=res;
+  }
+  return <div>
+    <p>enter no : <input/></p>
+    <button onClick={fnCheck}>check</button>
+    <p>result: <span></span></p>
+</div>
+  }
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+
+</script>

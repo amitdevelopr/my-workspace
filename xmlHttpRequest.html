@@ -1,0 +1,85 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const Table=({headers,data,columns})=>{
+  return <div>
+    <table border="2px">
+      <thead>
+        <tr>
+          {
+          headers.map((val,ind)=>{
+           return <th key={`th_${ind}`}>{val}</th>
+          })
+           }
+          </tr>
+        </thead>
+        <tbody>
+          {
+            data.map((obj,ind)=>{
+            return  <tr key={`tr_${ind}`}>
+                    {
+                      columns.map((val,ind)=>{
+                        return <td key={`td_${ind}`}>{obj[val]}</td>
+                     })
+                    }
+                </tr>
+            })
+          }
+          </tbody>
+      </table>
+    </div>
+}  
+const App=()=>{
+  const [users,setUsers]=React.useState([]);
+  const mockData=[
+    {
+      name:"ravi",
+      age:30
+  },
+  {
+    name:"raju",
+    age:20
+  }
+]
+const fnClick=()=>{
+  //create object of XmlHttpRequest Functional Class
+  const obj=new XMLHttpRequest();
+  //prepare the request
+  obj.open("get","https://jsonplaceholder.typicode.com/users");
+  //send request to server side app for response
+  obj.send();
+                    //request goes to server app which process it and give response back
+  
+  //handle success response
+  obj.onload=function(){
+  //request got completed with success response
+    setUsers(JSON.parse(obj.responseText));
+    //console.log(2,obj.response);
+  }                  
+
+  //handle failure response
+  obj.onerror=function(){
+    //request got completed with failure response
+    setUsers([]);
+    console.error(obj.responseText);
+  }
+
+  //setUsers(mockData);
+   }
+
+  
+  return <div>
+   <button onClick={fnClick}>Get User</button>
+   {
+    users.length >0 &&
+    <Table headers={["Id","Name","Email","WebSite","UserName"]} data={users}  columns={["id","name","email","website","username"]}/>
+   }
+    </div>
+}
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />)
+</script>

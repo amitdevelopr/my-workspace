@@ -1,0 +1,43 @@
+<script src="react.js"></script>
+<script src="reactDOM.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const OrderList=(props)=>{
+  const {data,headers}=props;
+  return <div>
+    <h1>{headers}</h1>
+    <ol>
+      {
+        data.map((val,ind,oa)=>{
+          return <li key={`li_${ind}`}>{val}</li>
+        })
+      }
+      </ol>
+    </div>
+}
+const App=()=>{
+ const info=[
+    {
+      headers: "players",
+      items: ["Sachin","Dhoni","Kohli","Dravid","Yuvraj","Rohit","Dhawan","Pant"]
+    },
+    {
+      headers: "students",
+      items: ["Samar","Ansh","Happy","Ronit","Harsh"]
+    }
+  ]
+  
+  return <div>
+    {
+      info.map(({items,headers},ind,oa)=>{
+        return <OrderList data={items} headers={headers}/>
+      })
+    }
+    </div>
+}
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+</script>  
