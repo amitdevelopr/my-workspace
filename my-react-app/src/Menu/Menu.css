@@ -1,0 +1,26 @@
+.menu {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: right;
+  background-color: bisque;
+}
+
+.menu>li {
+  display: inline;
+  margin-right: 15px;
+  letter-spacing: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.menu-activ{
+  color: red;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px white;
+}
+
+#link1 {
+  text-decoration: none;
+  color:brown
+}

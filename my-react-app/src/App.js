@@ -1,10 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Header from './Header';
+import Footer from './Footer'
+import Menu from './Menu'
 function App() {
   return (
     <div className="App">
-      <h1>my first React app</h1>
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
